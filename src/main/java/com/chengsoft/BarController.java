@@ -18,7 +18,7 @@ public class BarController {
 
     @RequestMapping("/bar/{id}")
     public BarView getGallery(@PathVariable("id") Integer id,
-                              @RequestParam(value="loadSaleStats", required = false, defaultValue = "false") Boolean loadSaleStats) {
+                              @RequestParam(value="loadSaleStats", required = false) Boolean loadSaleStats) {
         requestScopedBean.setLoadSaleStats(loadSaleStats);
         return conversionService.convert(Foo.builder()
                 .id(id)
