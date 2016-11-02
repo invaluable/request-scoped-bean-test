@@ -36,7 +36,21 @@ We set the `RequestScopeBean` to the request scope which means that instead of b
     }
 ```
 
-Notice that we are setting the bean, but **NOT** setting any value in the Foo.builder().
+Notice that we are setting the bean, but **NOT** setting any value in the Foo.builder(). It is being set below in the converter.
+
+*FooToBarViewConverter*
+
+```java
+    @Autowired RequestScopedBean requestScopedBean;
+
+    @Override
+    public BarView convert(Foo house) {
+        return BarView.builder()
+                .barId(house.getId())
+                .loadSaleStats(requestScopedBean.getLoadSaleStats())
+                .build();
+    }
+```
 
 Take a look at three requests
 
